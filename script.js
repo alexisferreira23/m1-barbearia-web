@@ -19,27 +19,73 @@ const barbearia = {
   
   
 function buscaCortePorId(id) {
+        let cortes = barbearia.cortes;
+        for(let i = 0; i < cortes.length; i++){
+                return cortes[i];
+            }
+        }
+    return "Corte não encontrado";
 }
 
+
 function buscaBarbaPorId(id) {
+    let barbas = barbearia.barbas;
+    for(let i = 0; i < barbas.length;i++){
+        if(barbas[i].id === id){
+            return barbas[i];
+        }
+    }
+    return "Barba não encontrada";
 }
 
 function verificaStatusBarbearia() {
+    if(barbearia.estaAberto === true){
+        return "Estamos abertos";
+    }
+    return "Estamos fechados";
 }
 
 function retornaTodosCortes() {
+    return barbearia.cortes;
 }
 
 function retornaTodasBarbas() {
+    return barbearia.barbas;
 }
 
 function criaPedido(nomeCliente, corteId, barbaId) {
+let pedido = {};
+let pedidoCortes = buscaCortePorId(corteId);
+let pedidoBarbas  = buscaBarbaPorId(barbaId);
+
+        pedido.nome = nomeCliente;
+        pedido.pedidoCorte = pedidoCortes.tipo;
+        pedido.pedidoCortePreco = pedidoCortes.valor;
+        pedido.pedidoBarba = pedidoBarbas.tipo;
+        pedido.pedidoBarbaPreco = pedidoBarbas.valor;
+    return pedido;
 }
+  
 
 function atualizarServico(lista, id, valor, tipo) {
+       for(let i = 0; i < lista.length; i++){
+        if(lista[i].id === id){
+            lista[i].valor = valor;
+            lista[i].tipo = tipo;
+        }
+    }
+    return lista;      
 }
 
+
+//calculaTotal(). Esta função recebe um pedido como parâmetro. Acesse as propriedades pedidoCortePreco e pedidoBarbaPreco, some o valor das duas e retorne a soma.
+
+
 function calculaTotal(pedido) {
+    
+    let pedidoCortes = pedido.pedidoCortePreco;
+    let pedidoBarbas = pedido.pedidoBarbaPreco;
+
+    soma = pedidoCortes + pedidoBarbas;
+    return  soma;
 }
-  
-  
